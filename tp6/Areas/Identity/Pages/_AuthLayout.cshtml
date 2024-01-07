@@ -1,0 +1,33 @@
+﻿@{
+	Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<div class="auth-layout-container">
+    <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" href="/Identity/Account/Login">Login</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" href="/Identity/Account/Register">Register</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        @RenderBody()
+    </div>
+</div>
+
+@section Scripts{
+	@await RenderSectionAsync("Scripts", required: false);
+	<script>
+		$(function() {
+			const currentPage = location.pathname;
+			$('.nav-pills li a').each(function () {
+				const $this = $(this);
+				if (currentPage.toLowerCase().indexOf($this.attr('href').toLowerCase()) !== -1) {
+					$this.addClass('active');
+				}
+			})
+		})
+	</script>
+}
